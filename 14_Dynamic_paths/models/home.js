@@ -19,7 +19,7 @@ module.exports = class Home {
     Home.fetchAll((registeredHomes) => {
       if(this.id){
         registeredHomes = registeredHomes.map((home)=>{
-          if(home.id ===this.id){
+          if(home._id ===this.id){
             return this;
           }
           return home;
@@ -44,14 +44,14 @@ module.exports = class Home {
 
   static findById(homeId,callback){
     this.fetchAll(homes=>{
-      const homeFound = homes.find(home=>home.id ===homeId)
+      const homeFound = homes.find(home=>home._id ===homeId)
       callback(homeFound)
     })
   }
 
   static deleteById(homeId, callback) {
     this.fetchAll(homes => {
-      homes = homes.filter(home => home.id !== homeId);
+      homes = homes.filter(home => home._id !== homeId);
       fs.writeFile(homeDataPath, JSON.stringify(homes), error => {
         Favourite.deleteById(homeId, callback);
       });
