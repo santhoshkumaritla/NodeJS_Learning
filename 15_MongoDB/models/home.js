@@ -32,19 +32,19 @@ module.exports = class Home {
 
   static fetchAll() {
     const db = getDb();
-    return db.collection('homes').find().toArray();
+      return db.collection('homes').find().toArray();
   }
 
   static findById(homeId) {
     const db = getDb();
-    return db.collection('homes')
+      return db.collection('homes')
     .find({_id: new ObjectId(String(homeId))})
     .next();
   }
 
   static deleteById(homeId) {
     const db = getDb();
-    return db.collection('homes')
+      return db.collection('homes')
     .deleteOne({_id: new ObjectId(String(homeId))});
   }
 };
